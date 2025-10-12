@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Users, Shield, Target, Award, Heart, TrendingUp } from 'lucide-react';
 

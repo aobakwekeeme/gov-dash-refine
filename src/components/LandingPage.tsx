@@ -22,7 +22,7 @@ function LandingPage() {
               Sign In
             </Link>
             <Link
-              to="/signin"
+              to="/signin?mode=signup"
               className="bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-lg font-medium transition-colors"
             >
               Register
@@ -58,7 +58,7 @@ function LandingPage() {
           
           <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6 mb-12">
             <Link
-              to="/signin"
+              to="/signin?mode=signup"
               className="group bg-gradient-to-r from-teal-600 to-blue-600 hover:from-teal-700 hover:to-blue-700 text-white px-10 py-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
             >
               <span className="flex items-center">
@@ -169,7 +169,7 @@ function LandingPage() {
                 performance, and access government oversight support.
               </p>
               <Link
-                to="/signin"
+                to="/signin?mode=signup"
                 className="bg-gradient-to-r from-teal-600 to-blue-600 hover:from-teal-700 hover:to-blue-700 text-white px-8 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
               >
                 Register as Shop
@@ -185,7 +185,7 @@ function LandingPage() {
                 and ensure fair ownership distribution across your jurisdiction.
               </p>
               <Link
-                to="/signin"
+                to="/signin?mode=signup"
                 className="bg-gradient-to-r from-teal-600 to-blue-600 hover:from-teal-700 hover:to-blue-700 text-white px-8 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
               >
                 Register as Government
@@ -201,7 +201,7 @@ function LandingPage() {
                 and help improve community standards.
               </p>
               <Link
-                to="/signin"
+                to="/signin?mode=signup"
                 className="bg-gradient-to-r from-teal-600 to-blue-600 hover:from-teal-700 hover:to-blue-700 text-white px-8 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
               >
                 Register as Customer

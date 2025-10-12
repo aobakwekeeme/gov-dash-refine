@@ -19,6 +19,8 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode, onModeChan
   const [formData, setFormData] = useState({
     email: '',
     password: '',
+    confirmPassword: '',
+    confirmEmail: '',
     userType: defaultRole,
     name: '',
     phone: '',
@@ -40,6 +42,21 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode, onModeChan
     if (!emailValidation.isValid) {
       setError(emailValidation.error || 'Invalid email');
       return;
+    }
+
+    // For signup mode, validate additional fields
+    if (mode === 'signup') {
+      // Confirm email match
+      if (formData.email !== formData.confirmEmail) {
+        setError('Email addresses do not match');
+        return;
+      }
+
+      // Confirm password match
+      if (formData.password !== formData.confirmPassword) {
+        setError('Passwords do not match');
+        return;
+      }
     }
 
     try {
@@ -92,6 +109,8 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode, onModeChan
     setFormData({
       email: '',
       password: '',
+      confirmPassword: '',
+      confirmEmail: '',
       userType: defaultRole,
       name: '',
       phone: '',
@@ -275,6 +294,24 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode, onModeChan
 
           {mode === 'signup' && (
             <div>
+              <label htmlFor="confirmEmail" className="block text-sm font-medium text-gray-700 mb-2">
+                Confirm Email Address *
+              </label>
+              <input
+                type="email"
+                id="confirmEmail"
+                name="confirmEmail"
+                value={formData.confirmEmail}
+                onChange={handleInputChange}
+                required
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-all"
+                placeholder="Confirm your email address"
+              />
+            </div>
+          )}
+
+          {mode === 'signup' && (
+            <div>
               <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
                 Phone Number *
               </label>
@@ -375,7 +412,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode, onModeChan
             )}
             
             {mode === 'signin' && (
-              <div className="text-right">
+              <div className="text-right mt-1">
                 <button
                   type="button"
                   onClick={() => setShowForgotPassword(true)}
@@ -386,6 +423,34 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode, onModeChan
               </div>
             )}
           </div>
+
+          {mode === 'signup' && (
+            <div>
+              <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-2">
+                Confirm Password *
+              </label>
+              <div className="relative">
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  value={formData.confirmPassword}
+                  onChange={handleInputChange}
+                  required
+                  minLength={6}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-all pr-12"
+                  placeholder="Confirm your password"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                >
+                  {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                </button>
+              </div>
+            </div>
+          )}
 
           <ForgotPasswordModal 
             isOpen={showForgotPassword} 

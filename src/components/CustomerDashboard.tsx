@@ -16,6 +16,8 @@ export default function CustomerDashboard() {
   const favoriteShops = favorites.map(fav => fav.shops).filter(Boolean);
   const { activities } = useActivities(5);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isNotificationOpen, setIsNotificationOpen] = useState(false);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-background">
@@ -29,10 +31,30 @@ export default function CustomerDashboard() {
             </Link>
             <div className="flex items-center gap-2">
               <p className="text-white hidden md:block">Welcome, {profile?.full_name || user?.email}</p>
-              <NotificationDropdown />
-              <ProfileDropdown />
+              <NotificationDropdown 
+                isOpen={isNotificationOpen}
+                onToggle={() => {
+                  setIsNotificationOpen(!isNotificationOpen);
+                  setIsProfileOpen(false);
+                  setIsMenuOpen(false);
+                }}
+                onClose={() => setIsNotificationOpen(false)}
+              />
+              <ProfileDropdown 
+                isOpen={isProfileOpen}
+                onToggle={() => {
+                  setIsProfileOpen(!isProfileOpen);
+                  setIsNotificationOpen(false);
+                  setIsMenuOpen(false);
+                }}
+                onClose={() => setIsProfileOpen(false)}
+              />
               <button
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                onClick={() => {
+                  setIsMenuOpen(!isMenuOpen);
+                  setIsNotificationOpen(false);
+                  setIsProfileOpen(false);
+                }}
                 className="text-white p-2 hover:bg-pink-700 rounded-lg transition-colors md:hidden"
               >
                 {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}

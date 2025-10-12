@@ -3,12 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import { supabase } from '../integrations/supabase/client';
 import { toast } from 'sonner';
-import { ArrowLeft, Save, Upload, User, Mail, Phone, UserCheck } from 'lucide-react';
+import { ArrowLeft, Save, Upload, User, Mail, Phone, UserCheck, Key } from 'lucide-react';
+import ChangePasswordModal from './ChangePasswordModal';
 
 const ProfileManagement: React.FC = () => {
   const { user, profile } = useAuth();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const [showChangePassword, setShowChangePassword] = useState(false);
   const [profileData, setProfileData] = useState({
     full_name: '',
     phone: '',
@@ -242,6 +244,21 @@ const ProfileManagement: React.FC = () => {
               </div>
             </div>
 
+            {/* Security Section */}
+            <div className="border-t border-gray-200 pt-6">
+              <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                <Key className="w-5 h-5 mr-2 text-teal-600" />
+                Security
+              </h3>
+              <button
+                onClick={() => setShowChangePassword(true)}
+                className="w-full flex items-center justify-center px-6 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-medium"
+              >
+                <Key className="w-4 h-4 mr-2" />
+                Change Password
+              </button>
+            </div>
+
             {/* Save Button */}
             <div className="border-t border-gray-200 pt-6">
               <button
@@ -255,6 +272,11 @@ const ProfileManagement: React.FC = () => {
             </div>
           </div>
         </div>
+
+        <ChangePasswordModal
+          isOpen={showChangePassword}
+          onClose={() => setShowChangePassword(false)}
+        />
       </div>
     </div>
   );

@@ -6,6 +6,7 @@ import { useShops } from '../hooks/useShops';
 import { supabase } from '../integrations/supabase/client';
 import { useAuth } from '../hooks/useAuth';
 import { toast } from 'sonner';
+import CompleteInspectionModal from '../components/CompleteInspectionModal';
 
 export default function InspectionManagementPage() {
   const { user } = useAuth();
@@ -21,6 +22,8 @@ export default function InspectionManagementPage() {
   const [shopSearch, setShopSearch] = useState('');
   const [provinceFilter, setProvinceFilter] = useState('');
   const [districtFilter, setDistrictFilter] = useState('');
+  const [showCompleteModal, setShowCompleteModal] = useState(false);
+  const [selectedInspectionId, setSelectedInspectionId] = useState<string | null>(null);
 
   const provinces = Array.from(new Set(shops.map((s: any) => s.province).filter(Boolean)));
   const districts = Array.from(new Set(shops.map((s: any) => s.district_municipality).filter(Boolean)));
@@ -71,23 +74,9 @@ export default function InspectionManagementPage() {
     }
   };
 
-  const handleComplete = async (inspectionId: string, score: number) => {
-    try {
-      const { error } = await supabase
-        .from('inspections')
-        .update({ 
-          status: 'completed',
-          completed_date: new Date().toISOString(),
-          score 
-        })
-        .eq('id', inspectionId);
-
-      if (error) throw error;
-      toast.success('Inspection marked as completed');
-      refetch();
-    } catch (error) {
-      toast.error('Failed to update inspection');
-    }
+  const handleOpenCompleteModal = (inspectionId: string) => {
+    setSelectedInspectionId(inspectionId);
+    setShowCompleteModal(true);
   };
 
   return (
@@ -157,7 +146,7 @@ export default function InspectionManagementPage() {
 
                 {inspection.status === 'scheduled' && (
                   <button
-                    onClick={() => handleComplete(inspection.id, 85)}
+                    onClick={() => handleOpenCompleteModal(inspection.id)}
                     className="bg-primary text-primary-foreground px-4 py-2 rounded-lg hover:bg-primary/90"
                   >
                     Mark as Completed
@@ -271,6 +260,18 @@ export default function InspectionManagementPage() {
               </form>
             </div>
           </div>
+        )}
+
+        {selectedInspectionId && (
+          <CompleteInspectionModal
+            isOpen={showCompleteModal}
+            onClose={() => {
+              setShowCompleteModal(false);
+              setSelectedInspectionId(null);
+            }}
+            inspectionId={selectedInspectionId}
+            onSuccess={refetch}
+          />
         )}
       </div>
     </div>

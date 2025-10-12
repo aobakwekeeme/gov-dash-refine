@@ -16,6 +16,8 @@ export default function GovernmentDashboard() {
   const { inspections } = useInspections();
   const { documents } = useDocuments();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isNotificationOpen, setIsNotificationOpen] = useState(false);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
 
   const pendingShops = shops.filter(shop => shop.status === 'pending');
   const approvedShops = shops.filter(shop => shop.status === 'approved');
@@ -45,10 +47,30 @@ export default function GovernmentDashboard() {
             </Link>
             <div className="flex items-center gap-2">
               <p className="text-white hidden md:block">Welcome, {profile?.full_name || user?.email}</p>
-              <NotificationDropdown />
-              <ProfileDropdown />
+              <NotificationDropdown 
+                isOpen={isNotificationOpen}
+                onToggle={() => {
+                  setIsNotificationOpen(!isNotificationOpen);
+                  setIsProfileOpen(false);
+                  setIsMenuOpen(false);
+                }}
+                onClose={() => setIsNotificationOpen(false)}
+              />
+              <ProfileDropdown 
+                isOpen={isProfileOpen}
+                onToggle={() => {
+                  setIsProfileOpen(!isProfileOpen);
+                  setIsNotificationOpen(false);
+                  setIsMenuOpen(false);
+                }}
+                onClose={() => setIsProfileOpen(false)}
+              />
               <button
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                onClick={() => {
+                  setIsMenuOpen(!isMenuOpen);
+                  setIsNotificationOpen(false);
+                  setIsProfileOpen(false);
+                }}
                 className="text-white p-2 hover:bg-emerald-700 rounded-lg transition-colors md:hidden"
               >
                 {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}

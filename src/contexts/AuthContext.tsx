@@ -1,6 +1,7 @@
 import { createContext, useState, useEffect, ReactNode } from 'react';
 import { User, Session } from '@supabase/supabase-js';
 import { supabase } from '../integrations/supabase/client';
+import { initSessionManager, cleanupSessionManager } from '../utils/sessionManager';
 
 interface Profile {
   id: string;
@@ -56,8 +57,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
               console.error('Error fetching profile:', error);
             }
           }, 0);
+          
+          // Initialize session manager for auto-logout
+          initSessionManager(async () => {
+            await signOut();
+          });
         } else {
           setProfile(null);
+          cleanupSessionManager();
         }
         
         setLoading(false);
@@ -71,7 +78,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setLoading(false);
     });
 
-    return () => subscription.unsubscribe();
+    return () => {
+      subscription.unsubscribe();
+      cleanupSessionManager();
+    };
   }, []);
 
   const signIn = async (email: string, password: string) => {
