@@ -1,0 +1,530 @@
+# ==============================================================================
+# COMPREHENSIVE .GITIGNORE FOR SSRMS PROJECT
+# ==============================================================================
+
+
+# ==============================================================================
+# NODE.JS & NPM
+# ==============================================================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Dependency directories
+jspm_packages/
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Optional stylelint cache
+.stylelintcache
+
+# Microbundle cache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# ==============================================================================
+# FRONTEND BUILD & DIST
+# ==============================================================================
+dist/
+build/
+out/
+.next/
+.nuxt/
+.vuepress/dist/
+.serverless/
+.fusebox/
+.dynamodb/
+
+# Vite
+.vite/
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
+
+# Parcel
+.cache/
+.parcel-cache/
+
+# Webpack
+.webpack/
+
+# Rollup
+.rollup.cache/
+
+# ==============================================================================
+# ENVIRONMENT VARIABLES & SECRETS
+# ==============================================================================
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.staging
+.env.production
+.env.development
+.env.test
+
+# API Keys and Secrets
+.secrets/
+secrets.json
+config/secrets.json
+api-keys.json
+service-account-key.json
+firebase-adminsdk-*.json
+
+# ==============================================================================
+# DATABASES
+# ==============================================================================
+# SQLite
+*.sqlite
+*.sqlite3
+*.db
+*.db3
+
+# PostgreSQL
+# *.sql
+*.dump
+*.backup
+
+# MySQL
+*.mysql
+
+# MongoDB
+*.mongodb
+
+# Database backups
+db_backup/
+database_dumps/
+*.sql.gz
+*.dump.gz
+
+# Supabase
+supabase/.branches
+supabase/.temp
+supabase/config.toml
+
+# Prisma
+prisma/migrations/migration_lock.toml
+
+# ==============================================================================
+# BACKEND FRAMEWORKS
+# ==============================================================================
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Django
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+media/
+staticfiles/
+static/
+
+# Flask
+instance/
+.webassets-cache
+
+# FastAPI
+.pytest_cache/
+
+# Ruby on Rails
+*.rbc
+capybara-*.html
+.rspec
+/log
+/tmp
+/db/*.sqlite3
+/db/*.sqlite3-journal
+/public/system
+/coverage/
+/spec/tmp
+*.orig
+rerun.txt
+pickle-email-*.html
+
+# PHP
+/vendor/
+composer.phar
+composer.lock
+.env.php
+
+# Java
+*.class
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+target/
+.mvn/
+mvnw
+mvnw.cmd
+
+# .NET
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# ==============================================================================
+# TESTING
+# ==============================================================================
+# Jest
+coverage/
+.nyc_output/
+
+# Cypress
+cypress/videos/
+cypress/screenshots/
+cypress/downloads/
+
+# Playwright
+test-results/
+playwright-report/
+playwright/.cache/
+
+# ==============================================================================
+# DEVELOPMENT TOOLS & IDEs
+# ==============================================================================
+# Visual Studio Code
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# Sublime Text
+*.sublime-workspace
+*.sublime-project
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# ==============================================================================
+# OPERATING SYSTEMS
+# ==============================================================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.tmp
+*.temp
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# ==============================================================================
+# CLOUD & DEPLOYMENT
+# ==============================================================================
+# Vercel
+.vercel/
+
+# Netlify
+.netlify/
+
+# Firebase
+.firebase/
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+
+# AWS
+.aws/
+aws-exports.js
+
+# Heroku
+.heroku/
+
+# Google Cloud
+.gcloud/
+gcloud-service-key.json
+
+# Azure
+.azure/
+
+# ==============================================================================
+# CONTAINERIZATION
+# ==============================================================================
+# Docker
+.dockerignore
+docker-compose.override.yml
+.docker/
+
+# Kubernetes
+*.kubeconfig
+
+# ==============================================================================
+# CI/CD
+# ==============================================================================
+# GitHub Actions
+.github/workflows/secrets/
+
+# Jenkins
+.jenkins/
+
+# CircleCI
+.circleci/config.local.yml
+
+# ==============================================================================
+# LOGS & MONITORING
+# ==============================================================================
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# ==============================================================================
+# TEMPORARY & CACHE FILES
+# ==============================================================================
+# Temporary folders
+tmp/
+temp/
+.tmp/
+.temp/
+
+# Cache directories
+.cache/
+.parcel-cache/
+.eslintcache
+.stylelintcache
+
+# ==============================================================================
+# SECURITY & CERTIFICATES
+# ==============================================================================
+# SSL Certificates
+*.pem
+*.key
+*.crt
+*.csr
+*.p12
+*.pfx
+
+# SSH Keys
+id_rsa
+id_rsa.pub
+id_ed25519
+id_ed25519.pub
+
+# GPG Keys
+*.gpg
+*.asc
+
+# ==============================================================================
+# PACKAGE MANAGERS
+# ==============================================================================
+# Yarn
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
+
+# pnpm
+.pnpm-store/
+
+# ==============================================================================
+# MOBILE DEVELOPMENT (Future)
+# ==============================================================================
+# React Native
+.expo/
+.expo-shared/
+
+# Android
+*.apk
+*.aab
+local.properties
+.gradle/
+build/
+captures/
+.externalNativeBuild/
+.cxx/
+
+# iOS
+*.ipa
+*.dSYM.zip
+*.dSYM
+DerivedData/
+*.xcworkspace/xcuserdata/
+*.xcodeproj/xcuserdata/
+
+# ==============================================================================
+# ANALYTICS & TRACKING
+# ==============================================================================
+# Google Analytics
+gtag/
+
+# Sentry
+.sentryclirc
+
+# ==============================================================================
+# DOCUMENTATION
+# ==============================================================================
+# Generated docs
+docs/build/
+site/
+
+# ==============================================================================
+# MISCELLANEOUS
+# ==============================================================================
+# Backup files
+*.bak
+*.backup
+*.old
+*.orig
+
+# Archive files
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# OS generated files
+.DS_Store?
+ehthumbs.db
+Icon?
+Thumbs.db
+
+# Editor directories and files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# ==============================================================================
+# PROJECT SPECIFIC
+# ==============================================================================
+# SSRMS specific files
+uploads/
+user-uploads/
+shop-images/
+documents/
+certificates/
+reports/
+exports/
+
+# Development data
+seed-data/
+test-data/
+mock-data/
+
+# Generated files
+generated/
+auto-generated/
+
+# ==============================================================================
+# END OF .GITIGNORE
+# ==============================================================================

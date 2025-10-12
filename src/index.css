@@ -1,0 +1,139 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Government-like color palette */
+    --background: 240 10% 98%;
+    --foreground: 222 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 84% 4.9%;
+    --primary: 221 83% 53%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 84% 4.9%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222 84% 4.9%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 221 83% 53%;
+    --radius: 0.5rem;
+    
+    /* Government dashboard specific colors */
+    --gov-primary: 215 100% 25%;
+    --gov-accent: 197 100% 31%;
+    --gov-success: 142 76% 36%;
+    --gov-warning: 38 92% 50%;
+    --gov-danger: 0 84% 60%;
+    
+    /* Customer dashboard specific colors */
+    --customer-primary: 200 98% 39%;
+    --customer-accent: 171 77% 64%;
+    --customer-success: 159 64% 52%;
+    
+    /* Shop owner dashboard specific colors */
+    --shop-primary: 158 64% 52%;
+    --shop-accent: 159 64% 42%;
+    --shop-success: 142 76% 36%;
+  }
+
+  .dark {
+    --background: 222 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 222 84% 4.9%;
+    --secondary: 217 32% 17%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217 32% 17%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 217 32% 17%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217 32% 17%;
+    --input: 217 32% 17%;
+    --ring: 224 71% 4%;
+  }
+}
+
+@layer utilities {
+  /* Government styling utilities */
+  .gov-gradient {
+    background: linear-gradient(135deg, hsl(var(--gov-primary)), hsl(var(--gov-accent)));
+  }
+  
+  .customer-gradient {
+    background: linear-gradient(135deg, hsl(var(--customer-primary)), hsl(var(--customer-accent)));
+  }
+  
+  .shop-gradient {
+    background: linear-gradient(135deg, hsl(var(--shop-primary)), hsl(var(--shop-accent)));
+  }
+  
+  .gov-shadow {
+    box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.1), 0 2px 4px -1px rgba(59, 130, 246, 0.06);
+  }
+  
+  .card-elevated {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);
+    transition: all 0.3s ease;
+  }
+  
+  .card-elevated:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.06);
+    transform: translateY(-2px);
+  }
+  
+  .stat-card {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, hsl(var(--primary)), transparent);
+  }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 4s linear infinite;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.6s ease-out;
+}
