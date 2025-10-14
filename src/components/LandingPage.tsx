@@ -1,7 +1,29 @@
 import { Link } from 'react-router-dom';
 import { Store, Shield, Users } from 'lucide-react';
+import { useShops } from '../hooks/useShops';
+import { useEffect, useState } from 'react';
 
 function LandingPage() {
+  const { shops } = useShops();
+  const [stats, setStats] = useState({
+    totalShops: 0,
+    complianceRate: 0
+  });
+
+  useEffect(() => {
+    if (shops.length > 0) {
+      const totalShops = shops.length;
+      const compliantShops = shops.filter(shop => 
+        shop.status === 'approved' && (shop.compliance_score ?? 0) >= 80
+      ).length;
+      const complianceRate = totalShops > 0 
+        ? Math.round((compliantShops / totalShops) * 100) 
+        : 0;
+      
+      setStats({ totalShops, complianceRate });
+    }
+  }, [shops]);
+
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
@@ -84,11 +106,11 @@ function LandingPage() {
           {/* Stats */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-white/20 shadow-sm hover:shadow-md transition-shadow">
-              <div className="text-3xl font-bold text-teal-600 mb-2">1,200+</div>
+              <div className="text-3xl font-bold text-teal-600 mb-2">{stats.totalShops.toLocaleString()}+</div>
               <div className="text-gray-600 font-medium">Registered Shops</div>
             </div>
             <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-white/20 shadow-sm hover:shadow-md transition-shadow">
-              <div className="text-3xl font-bold text-blue-600 mb-2">95%</div>
+              <div className="text-3xl font-bold text-blue-600 mb-2">{stats.complianceRate}%</div>
               <div className="text-gray-600 font-medium">Compliance Rate</div>
             </div>
             <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-white/20 shadow-sm hover:shadow-md transition-shadow">
@@ -159,50 +181,50 @@ function LandingPage() {
             Choose Your Role
           </h2>
           <div className="grid md:grid-cols-3 gap-10">
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 text-center shadow-lg hover:shadow-xl transition-all duration-300 border border-white/20 group hover:scale-105">
+            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 text-center shadow-lg hover:shadow-xl transition-all duration-300 border border-white/20 group hover:scale-105 flex flex-col">
               <div className="w-20 h-20 bg-gradient-to-br from-orange-100 to-orange-200 rounded-2xl mx-auto mb-6 flex items-center justify-center shadow-md group-hover:shadow-lg transition-all duration-300">
                 <Store className="w-8 h-8 text-orange-600" />
               </div>
               <h3 className="text-2xl font-semibold mb-4 text-gray-900">Shop Owner</h3>
-              <p className="text-gray-600 mb-8 leading-relaxed">
+              <p className="text-gray-600 mb-8 leading-relaxed flex-grow">
                 Register your spaza shop, manage compliance documentation, track business 
                 performance, and access government oversight support.
               </p>
               <Link
                 to="/signin?mode=signup"
-                className="bg-gradient-to-r from-teal-600 to-blue-600 hover:from-teal-700 hover:to-blue-700 text-white px-8 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                className="inline-block bg-gradient-to-r from-teal-600 to-blue-600 hover:from-teal-700 hover:to-blue-700 text-white px-8 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl w-full"
               >
                 Register as Shop
               </Link>
             </div>
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 text-center shadow-lg hover:shadow-xl transition-all duration-300 border border-white/20 group hover:scale-105">
+            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 text-center shadow-lg hover:shadow-xl transition-all duration-300 border border-white/20 group hover:scale-105 flex flex-col">
               <div className="w-20 h-20 bg-gradient-to-br from-purple-100 to-purple-200 rounded-2xl mx-auto mb-6 flex items-center justify-center shadow-md group-hover:shadow-lg transition-all duration-300">
                 <Shield className="w-8 h-8 text-purple-600" />
               </div>
               <h3 className="text-2xl font-semibold mb-4 text-gray-900">Government Official</h3>
-              <p className="text-gray-600 mb-8 leading-relaxed">
+              <p className="text-gray-600 mb-8 leading-relaxed flex-grow">
                 Review shop applications, monitor compliance rates, manage inspections, 
                 and ensure fair ownership distribution across your jurisdiction.
               </p>
               <Link
                 to="/signin?mode=signup"
-                className="bg-gradient-to-r from-teal-600 to-blue-600 hover:from-teal-700 hover:to-blue-700 text-white px-8 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                className="inline-block bg-gradient-to-r from-teal-600 to-blue-600 hover:from-teal-700 hover:to-blue-700 text-white px-8 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl w-full"
               >
                 Register as Government
               </Link>
             </div>
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 text-center shadow-lg hover:shadow-xl transition-all duration-300 border border-white/20 group hover:scale-105">
+            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 text-center shadow-lg hover:shadow-xl transition-all duration-300 border border-white/20 group hover:scale-105 flex flex-col">
               <div className="w-20 h-20 bg-gradient-to-br from-pink-100 to-pink-200 rounded-2xl mx-auto mb-6 flex items-center justify-center shadow-md group-hover:shadow-lg transition-all duration-300">
                 <Users className="w-8 h-8 text-pink-600" />
               </div>
               <h3 className="text-2xl font-semibold mb-4 text-gray-900">Customer</h3>
-              <p className="text-gray-600 mb-8 leading-relaxed">
+              <p className="text-gray-600 mb-8 leading-relaxed flex-grow">
                 Find verified spaza shops in your area, leave reviews, report safety issues, 
                 and help improve community standards.
               </p>
               <Link
                 to="/signin?mode=signup"
-                className="bg-gradient-to-r from-teal-600 to-blue-600 hover:from-teal-700 hover:to-blue-700 text-white px-8 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                className="inline-block bg-gradient-to-r from-teal-600 to-blue-600 hover:from-teal-700 hover:to-blue-700 text-white px-8 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl w-full"
               >
                 Register as Customer
               </Link>
