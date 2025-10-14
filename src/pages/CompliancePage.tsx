@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowLeft, Shield, CheckCircle, AlertTriangle, FileText, Users, Building, Phone, Mail } from 'lucide-react';
+import { ArrowLeft, Shield, CheckCircle, FileText, Building, Phone, Mail } from 'lucide-react';
 
 const CompliancePage: React.FC = () => {
   const [activeTab, setActiveTab] = useState('overview');
@@ -252,7 +252,7 @@ const CompliancePage: React.FC = () => {
             <div>
               <h2 className="text-2xl font-bold text-gray-900 mb-6">Compliance Process</h2>
               <div className="space-y-6">
-                {complianceProcess.map((step, index) => (
+                {complianceProcess.map((step) => (
                   <div key={step.step} className="bg-white rounded-lg shadow-sm border p-6">
                     <div className="flex items-start">
                       <div className="bg-teal-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-semibold mr-4 flex-shrink-0">

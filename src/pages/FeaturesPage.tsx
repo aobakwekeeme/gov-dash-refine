@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Store, Shield, Users, FileText, BarChart3, MapPin, Bell, Star, CheckCircle, Clock, Phone } from 'lucide-react';
+import { ArrowLeft, Store, Shield, Users, FileText, BarChart3, MapPin, Bell, Star, CheckCircle, Clock } from 'lucide-react';
 
 export default function FeaturesPage() {
   const [activeRole, setActiveRole] = useState<'customer' | 'shop-owner' | 'government'>('customer');
